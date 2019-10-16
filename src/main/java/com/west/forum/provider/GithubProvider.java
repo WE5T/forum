@@ -22,7 +22,6 @@ public class GithubProvider {
         try (Response response = client.newCall(request).execute()) {
             String str = response.body().string();
             String token = str.split("&")[0].split("=")[1];
-            System.out.println(str);
             return str;
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +38,6 @@ public class GithubProvider {
             Response response = client.newCall(request).execute();
             String str = response.body().string();
             GithubUser githubUser = JSON.parseObject(str, GithubUser.class);
-            System.out.println(response);
             return githubUser;
         } catch (IOException e) {
         }
