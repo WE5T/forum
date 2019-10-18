@@ -12,5 +12,5 @@ public class Question {
     private Long gmtModified;
     private Integer creator;
     private Integer viewCount;
-    private Integer commenCount;
+    private Integer commentCount;
 }

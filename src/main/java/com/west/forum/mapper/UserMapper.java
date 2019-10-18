@@ -14,4 +14,7 @@ public interface UserMapper {
 
    @Select("select * from h2db.schema.userTable where token = #{token}")
     User findByToken(@Param("token") String token);
+
+   @Select("select * from h2db.schema.userTable where id = #{id}")
+    User findById(@Param("id") Integer creator);
 }
