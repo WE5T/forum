@@ -19,4 +19,10 @@ public interface QuestionMapper {
 
     @Select("select count(1) from h2db.schema.question")
     int count();
+
+    @Select("select * from h2db.schema.question where creator = #{userId} order by id limit #{offset}, #{size}")
+    List<Question> listByUserId(@Param(value = "userId") Integer userId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+
+    @Select("select count(1) from h2db.schema.question where creator = #{userId}")
+    Integer countByUserId(@Param(value = "userId")Integer userId);
 }
