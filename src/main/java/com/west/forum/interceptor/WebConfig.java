@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -18,6 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
         //patterns 拦截的地址，excludePathPatterns 略过的地址
         //registry.addInterceptor(new ThemeInterceptor()).addPathPatterns("/**").excludePathPatterns("/admin/**");
 
-        registry.addInterceptor(sesstionInterceptor).addPathPatterns("/secure/*");
+        registry.addInterceptor(sesstionInterceptor).addPathPatterns("/**");
     }
 }
