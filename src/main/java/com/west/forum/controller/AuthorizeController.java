@@ -2,7 +2,7 @@ package com.west.forum.controller;
 
 import com.west.forum.dto.AccessTokenDTO;
 import com.west.forum.dto.GithubUser;
-import com.west.forum.model.User;
+import com.west.forum.model.schema.User;
 import com.west.forum.provider.GithubProvider;
 import com.west.forum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.west.forum.controller;
 
 import com.west.forum.dto.PaginationDTO;
-import com.west.forum.mapper.UserMapper;
+import com.west.forum.mapper.schema.UserMapper;
 import com.west.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

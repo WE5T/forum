@@ -1,6 +1,6 @@
 package com.west.forum.dto;
 
-import com.west.forum.model.User;
+import com.west.forum.model.schema.User;
 import lombok.Data;
 
 @Data

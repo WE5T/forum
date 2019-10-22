@@ -1,7 +1,7 @@
 package com.west.forum.controller;
 
 import com.west.forum.dto.PaginationDTO;
-import com.west.forum.model.User;
+import com.west.forum.model.schema.User;
 import com.west.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
