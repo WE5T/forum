@@ -2,6 +2,8 @@ package com.west.forum.service;
 
 import com.west.forum.dto.PaginationDTO;
 import com.west.forum.dto.QuestionDTO;
+import com.west.forum.exception.CustomizeErrorCode;
+import com.west.forum.exception.CustomizeException;
 import com.west.forum.mapper.schema.QuestionMapper;
 import com.west.forum.mapper.schema.UserMapper;
 import com.west.forum.model.schema.Question;
@@ -100,6 +102,8 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if(question == null)
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);        //将question属性拷贝到questionDTO中
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -122,7 +126,9 @@ public class QuestionService {
             updateQuestion.setTag(question.getTag());
             QuestionExample example = new QuestionExample();
             example.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            if(questionMapper.updateByExampleSelective(updateQuestion, example) != 1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            };
 
         }
     }
