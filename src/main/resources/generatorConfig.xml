@@ -33,5 +33,6 @@
 
         <table schema="schema" tableName="usertable" domainObjectName="User" ></table>
         <table schema="schema" tableName="question" domainObjectName="Question" ></table>
+        <table schema="schema" tableName="comment" domainObjectName="Comment" ></table>
     </context>
 </generatorConfiguration>
