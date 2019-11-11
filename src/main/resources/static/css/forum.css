@@ -1,28 +1,32 @@
-body{
-    background-color:#efefef;
+body {
+    background-color: #efefef;
 }
 
-.main  {
+.main {
     margin: 40px;
     background-color: white;
 }
 
-.btn-publish{
+.btn-publish {
     float: right;
     margin-bottom: 15px;
 }
 
-.media-object{
+.media-object {
     width: 40px;
     height: 40px;
 }
 
-.text-color{
+.text-color {
     font-size: 14px;
     font-weight: normal;
     color: #999;
 }
 
-.profile .section{
+.profile .section {
     margin-top: 15px;
+}
+
+.comment {
+    margin: 10px 0;
 }

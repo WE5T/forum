@@ -1,4 +1,4 @@
-package com.west.forum.controller.advice;
+package com.west.forum.advice;
 
 import com.alibaba.fastjson.JSON;
 import com.west.forum.dto.ResultDTO;
