@@ -21,6 +21,7 @@ function post() {
                         window.localStorage.setItem("closable", true);
                     }
                 }
+                window.location.reload();
             }
         },
         dataType: "json"

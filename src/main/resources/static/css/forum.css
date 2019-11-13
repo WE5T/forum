@@ -30,3 +30,24 @@ body {
 .comment {
     margin: 10px 0;
 }
+
+.menu {
+    color: #999;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.menu .icon {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.menu .icon:hover {
+    color: #499ef3;
+}
+
+.comment-bottom{
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(238,238,238);
+}
