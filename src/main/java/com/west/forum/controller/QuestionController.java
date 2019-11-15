@@ -1,8 +1,8 @@
 package com.west.forum.controller;
 
-import com.west.forum.dto.CommentCreateDTO;
 import com.west.forum.dto.CommentDTO;
 import com.west.forum.dto.QuestionDTO;
+import com.west.forum.enums.CommentTypeEnum;
 import com.west.forum.service.CommentService;
 import com.west.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class QuestionController {
         QuestionDTO questionDTO = questionService.getById(id);
         //累加浏览数
         questionService.incView(id);
-        List<CommentDTO> comments = commentService.listByQuestionId(id);
+        List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
         return "question";

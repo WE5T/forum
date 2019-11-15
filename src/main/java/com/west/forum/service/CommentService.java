@@ -4,10 +4,7 @@ import com.west.forum.dto.CommentDTO;
 import com.west.forum.enums.CommentTypeEnum;
 import com.west.forum.exception.CustomizeErrorCode;
 import com.west.forum.exception.CustomizeException;
-import com.west.forum.mapper.schema.CommentMapper;
-import com.west.forum.mapper.schema.QuestionExtMapper;
-import com.west.forum.mapper.schema.QuestionMapper;
-import com.west.forum.mapper.schema.UserMapper;
+import com.west.forum.mapper.schema.*;
 import com.west.forum.model.schema.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +31,9 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentExtMapper commentExtMapper;
+
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {
@@ -52,6 +52,11 @@ public class CommentService {
             }
             commentMapper.insert(comment);
 
+            //增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incComment(parentComment);
         } else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -64,11 +69,11 @@ public class CommentService {
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long id) {
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andParentIdEqualTo(id)
-                .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                .andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if (comments.size() == 0)

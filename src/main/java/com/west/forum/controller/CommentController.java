@@ -1,7 +1,9 @@
 package com.west.forum.controller;
 
 import com.west.forum.dto.CommentCreateDTO;
+import com.west.forum.dto.CommentDTO;
 import com.west.forum.dto.ResultDTO;
+import com.west.forum.enums.CommentTypeEnum;
 import com.west.forum.exception.CustomizeErrorCode;
 import com.west.forum.model.schema.Comment;
 import com.west.forum.model.schema.User;
@@ -9,13 +11,10 @@ import com.west.forum.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -43,8 +42,16 @@ public class CommentController {
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
         comment.setCommenter(user.getId());
-        comment.setLikeCount(0L);
+        comment.setLikeCount(0);
+        comment.setCommentCount(0);
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public ResultDTO<List> comments(@PathVariable(name = "id") Long id) {
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDTO.okOf(commentDTOS);
     }
 }
