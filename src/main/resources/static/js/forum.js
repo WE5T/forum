@@ -37,6 +37,7 @@ function comment2target(targetId, type, content) {
 function comment(e) {
     var commentId = e.getAttribute("data-id");
     var content = $("#input-" + commentId).val();
+    $("#input-" + commentId).val("") ;
     comment2target(commentId, 2, content);
 }
 
