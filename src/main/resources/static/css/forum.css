@@ -60,3 +60,11 @@ body {
     list-style: none;
     padding-left: 0;
 }
+
+.label-info{
+    white-space: normal;
+    margin: 5px 5px;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
