@@ -37,7 +37,7 @@ function comment2target(targetId, type, content) {
 function comment(e) {
     var commentId = e.getAttribute("data-id");
     var content = $("#input-" + commentId).val();
-    $("#input-" + commentId).val("") ;
+    $("#input-" + commentId).val("");
     comment2target(commentId, 2, content);
 }
 
@@ -55,13 +55,13 @@ function collapseComment(e) {
 
                 var commentElement = $("<div/>", {
                     "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12",
-                    "style":"margin-top: 5px; margin-bottom: 5px",
+                    "style": "margin-top: 5px; margin-bottom: 5px",
                     html: comment.content
                 });
 
                 var mediaheadElement = $("<a/>", {
                     "class": "media-heading",
-                    "href":"#",
+                    "href": "#",
                     "html": comment.user.name
                 });
 
@@ -91,5 +91,28 @@ function collapseComment(e) {
             });
 
         });
+    }
+}
+
+//选择标签
+function selectTag(e) {
+    var value = e.getAttribute("data-tag")
+    var previous = $("#tag").val();
+    if (previous.split(',').indexOf(value) == -1) {
+        if (previous) {
+            $("#tag").val(previous + ',' + value);
+        } else {
+            $("#tag").val(value);
+        }
+    }
+}
+
+//展示选择标签
+function showSelectTag(value) {
+
+    if (value) {
+        $("#select-tag").css("display", "block");
+    } else {
+        $("#select-tag").css("display", "none");
     }
 }
