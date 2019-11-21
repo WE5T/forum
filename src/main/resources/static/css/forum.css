@@ -68,3 +68,19 @@ body {
     font-size: 13px;
     cursor: pointer;
 }
+
+.point{
+    position: relative;
+}
+
+.red-point{
+    display:inline-block;
+    /*position: absolute;*/
+    background:#f00;
+    border-radius:50%;
+    width:5px;
+    height:5px;
+    top:0px;
+    right:0px;
+
+}
