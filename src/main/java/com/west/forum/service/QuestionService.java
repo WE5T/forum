@@ -2,6 +2,7 @@ package com.west.forum.service;
 
 import com.west.forum.dto.PaginationDTO;
 import com.west.forum.dto.QuestionDTO;
+import com.west.forum.dto.QuestionQueryDTO;
 import com.west.forum.exception.CustomizeErrorCode;
 import com.west.forum.exception.CustomizeException;
 import com.west.forum.mapper.schema.QuestionExtMapper;
@@ -33,12 +34,17 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
+
+    if(!StringUtils.isEmpty(search)){
+        search = StringUtils.replace(search," ","|");
+    }
 
         PaginationDTO paginationDTO = new PaginationDTO();
-        Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
         Integer totalPage;
-
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        Integer totalCount = questionExtMapper.countBySearch(questionQueryDTO);
 
         if (totalCount % size == 0)
             totalPage = totalCount / size;
@@ -54,9 +60,9 @@ public class QuestionService {
         paginationDTO.setPagination(totalPage, page);
 
         Integer offset = size * (page - 1);
-        QuestionExample example = new QuestionExample();
-        example.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(example, new RowBounds(offset, size));
+        questionQueryDTO.setSize(size);
+        questionQueryDTO.setPage(offset);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
         for (Question question : questions) {
