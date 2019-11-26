@@ -35,7 +35,6 @@ body {
     color: #999;
     margin-top: 10px;
     margin-bottom: 20px;
-
 }
 
 .menu .icon {
@@ -82,5 +81,15 @@ body {
     height:5px;
     top:0px;
     right:0px;
-
 }
+
+.foot{
+    padding:15px 20%;
+    color: #666;
+    text-align: center;
+}
+
+.badge{
+    background-color: #f00;
+}
+
