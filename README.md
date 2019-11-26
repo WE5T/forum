@@ -13,6 +13,7 @@
 [Mybatis generator](http://mybatis.org/generator/quickstart.html)  
 ## tools
 [git](https://git-scm.com/download)
+[icon](https://www.iconfont.cn)
 
 ```bash
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
